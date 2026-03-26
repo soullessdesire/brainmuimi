@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "typescript-config/consistent-casing": "off",
+    "typescript-config/strict": "off",
+    "typescript-config/is-valid": "off",
+    "no-inline-styles": "off",
+    "axe/forms": [
+      "off",
+      {
+        "label": "off"
+      }
+    ],
+    "axe/name-role-value": "off"
+  }
+}
