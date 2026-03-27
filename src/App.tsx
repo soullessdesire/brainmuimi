@@ -1,9 +1,14 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import type { ReactNode } from "react"
-import { AuthProvider, useAuth } from "./context/auth-context"
-import { AdminPage as AdminDashboard, PdfPage as Dashboard, LoginPage as Login, SignupPage as Signup, Home } from "./pages"
-import { Spinner } from "./components/spinner"
-
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import type { ReactNode } from 'react'
+import { AuthProvider, useAuth } from '@/context/auth-context'
+import {
+  AdminPage as AdminDashboard,
+  PdfPage    as Dashboard,
+  LoginPage  as Login,
+  SignupPage  as Signup,
+  Home,
+} from '@/pages'
+import { Spinner } from '@/components/spinner'
 
 function LoadingScreen() {
   return (
@@ -13,38 +18,38 @@ function LoadingScreen() {
   )
 }
 
-function ProtectedRoute({
-  children,
-  requireAdmin = false,
-}: {
-  children: ReactNode
-  requireAdmin?: boolean
-}) {
+// Admin-only guard
+function AdminRoute({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth()
   if (loading) return <LoadingScreen />
-  if (!user)   return <Navigate to="/login" replace />
-  if (requireAdmin && user.role !== 'admin') return <Navigate to="/dashboard" replace />
+  if (!user || user.role !== 'admin') return <Navigate to="/login" replace />
   return <>{children}</>
 }
 
-function PublicRoute({ children }: { children: ReactNode }) {
+// Redirect logged-in users away from auth pages
+function AuthRedirect({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth()
   if (loading) return <LoadingScreen />
-  if (user)    return <Navigate to={user.role === 'admin' ? '/admin' : '/dashboard'} replace />
+  if (user) return <Navigate to={user.role === 'admin' ? '/admin' : '/dashboard'} replace />
   return <>{children}</>
 }
 
-// ── App ───────────────────────────────────────────────────────────
 export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<PublicRoute><Home /></PublicRoute>} />
-          <Route path="/login"  element={<PublicRoute><Login /></PublicRoute>} />
-          <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
-          <Route path="/dashboard"    element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/admin"  element={<ProtectedRoute requireAdmin><AdminDashboard /></ProtectedRoute>} />
+          {/* Public — always accessible */}
+          <Route path="/"          element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+
+          {/* Auth pages — redirect if already signed in */}
+          <Route path="/login"           element={<AuthRedirect><Login /></AuthRedirect>} />
+          <Route path="/signup"          element={<AuthRedirect><Signup /></AuthRedirect>} />
+
+          <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
