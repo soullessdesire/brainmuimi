@@ -2,6 +2,7 @@ import { Timestamp } from "firebase/firestore"
 export type RequestStatus = 'pending' | 'approved' | 'rejected'
 
 export interface DocumentRequest {
+  phone: string
   id:         string
   uid:        string
   userName:   string

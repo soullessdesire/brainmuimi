@@ -75,7 +75,7 @@ export async function getUserDocRequest(
     )
     if (snap.empty) return null
     const d = snap.docs[0]
-    return { id: d.id, ...d.data() } as DocumentRequest
+    return { id: d?.id, ...d?.data() } as DocumentRequest
   } catch {
     // Composite index not yet deployed — fall back to fetching all user docs
     // and filtering client-side. Remove this fallback once indexes are deployed.

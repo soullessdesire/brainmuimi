@@ -7,6 +7,7 @@ import {
   LoginPage  as Login,
   SignupPage  as Signup,
   Home,
+  ForgotPasswordPage,
 } from '@/pages'
 import { Spinner } from '@/components/spinner'
 
@@ -46,7 +47,9 @@ export default function App() {
           {/* Auth pages — redirect if already signed in */}
           <Route path="/login"           element={<AuthRedirect><Login /></AuthRedirect>} />
           <Route path="/signup"          element={<AuthRedirect><Signup /></AuthRedirect>} />
+          <Route path="/forgot-password" element={<AuthRedirect><ForgotPasswordPage /></AuthRedirect>} />
 
+          {/* Admin only */}
           <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
 
           <Route path="*" element={<Navigate to="/" replace />} />

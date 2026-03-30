@@ -1,19 +1,18 @@
-import { useState, type FormEvent, type ChangeEvent } from 'react'
+import React, { useState, type FormEvent, type ChangeEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { Button } from '../../components/ui/button'
-import { Input } from '../../components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card'
-import { Alert, AlertDescription } from '../../components/ui/alert'
-import { Separator } from '../../components/ui/separator'
-import { Logo } from '../../components/logo'
-import { Spinner } from '../../components/spinner'
-import { FormField } from '../../components/form-field'
-import { DecorativePanel } from '../../components/decorative-panel'
-import { signupUser } from '../../services/auth.service'
-import { friendlyAuthError } from '../../lib/firebase-errors'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Separator } from '@/components/ui/separator'
+import { Logo } from '@/components/logo'
+import { Spinner } from '@/components/spinner'
+import { FormField } from '@/components/form-field'
+import { DecorativePanel } from '@/components/decorative-panel'
+import { signupUser } from '@/services/auth.service'
+import { friendlyAuthError } from '@/lib/firebase-errors'
 import { AlertCircle, CheckCircle2, BookOpen } from 'lucide-react'
-import { Helmet } from 'react-helmet-async'
 
 interface SignupForm {
   name:     string
@@ -24,7 +23,7 @@ interface SignupForm {
 
 const INITIAL: SignupForm = { name: '', email: '', password: '', confirm: '' }
 
-export function SignupPage() {
+export default function SignupPage() {
   const [form, setForm]           = useState<SignupForm>(INITIAL)
   const [formError, setFormError] = useState<string>('')
 
@@ -54,22 +53,6 @@ export function SignupPage() {
   if (mutation.isSuccess) return (
     <div className="flex min-h-screen">
       <DecorativePanel />
-            <Helmet>
-        <title>Create Account | Kiswahili Books</title>
-        <meta
-          name="description"
-          content="Create an account to purchase and download self-authored Kiswahili books and African literature."
-        />
-        <meta
-          name="keywords"
-          content="Sign up Kiswahili books, Swahili literature account, buy books online Kenya"
-        />
-        <meta property="og:title" content="Create Account | Kiswahili Books" />
-        <meta
-          property="og:description"
-          content="Join to access original Kiswahili digital books."
-        />
-      </Helmet>
       <div className="w-full lg:w-[480px] lg:min-w-[480px] bg-background flex flex-col justify-center px-8 py-14">
         <div className="max-w-sm mx-auto w-full animate-in fade-in-0 slide-in-from-bottom-4 duration-500">
           <Logo className="mb-10" />
@@ -123,9 +106,9 @@ export function SignupPage() {
             <CardContent className="px-0 flex flex-col gap-5">
               {/* Info callout */}
               <div className="flex gap-3 rounded-lg border border-accent/25 bg-accent/5 p-4">
-                <BookOpen className="text-blue shrink-0 mt-0.5" size={16} />
+                <BookOpen className="text-accent shrink-0 mt-0.5" size={16} />
                 <div>
-                  <p className="text-xs font-bold text-black mb-1">How it works</p>
+                  <p className="text-xs font-bold text-accent mb-1">How it works</p>
                   <p className="text-xs text-muted-foreground leading-relaxed">
                     Create a free account, browse the library, and purchase access to
                     individual documents — each at its own price. Payment is verified
@@ -174,7 +157,7 @@ export function SignupPage() {
 
               <p className="text-center text-sm text-muted-foreground">
                 Already have an account?{' '}
-                <Link to="/login" className="text-black font-semibold hover:underline underline-offset-4">
+                <Link to="/login" className="text-accent font-semibold hover:underline underline-offset-4">
                   Sign in
                 </Link>
               </p>

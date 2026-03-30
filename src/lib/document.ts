@@ -1,7 +1,3 @@
-// src/lib/documents.ts
-// Single source of truth for the document catalogue.
-// Price is in KES. Swap currency symbol in PdfPage if needed.
-
 import type { Document } from '../types'
 
 export const DOCUMENTS: Document[] = [
@@ -14,7 +10,6 @@ export const DOCUMENTS: Document[] = [
     category:    'Business',
     price:       1500,
     preview:     'This guide covers the fundamentals of business strategy, from SWOT analysis to Blue Ocean frameworks…',
-    storagePath: ''
   },
   {
     id:          'doc-2',
@@ -25,7 +20,6 @@ export const DOCUMENTS: Document[] = [
     category:    'Finance',
     price:       2500,
     preview:     'Financial modelling is the backbone of investment decision-making. This document walks through…',
-    storagePath: ''
   },
   {
     id:          'doc-3',
@@ -36,7 +30,6 @@ export const DOCUMENTS: Document[] = [
     category:    'Marketing',
     price:       1200,
     preview:     'The digital landscape has fundamentally shifted. This playbook equips you with data-driven strategies…',
-    storagePath: ''
   },
   {
     id:          'doc-4',
@@ -47,7 +40,6 @@ export const DOCUMENTS: Document[] = [
     category:    'Leadership',
     price:       1800,
     preview:     'Great teams are built on psychological safety, clear accountability, and deliberate leadership practices…',
-    storagePath: ''
   },
   {
     id:          'doc-5',
@@ -58,7 +50,6 @@ export const DOCUMENTS: Document[] = [
     category:    'Technology',
     price:       3000,
     preview:     'Data science is no longer optional for modern businesses. This primer covers the entire workflow…',
-    storagePath: ''
   },
   {
     id:          'doc-6',
@@ -69,7 +60,6 @@ export const DOCUMENTS: Document[] = [
     category:    'Legal',
     price:       2000,
     preview:     'Understanding the contracts you sign protects your business and your relationships. This guide covers…',
-    storagePath: ''
   },
 ]
 

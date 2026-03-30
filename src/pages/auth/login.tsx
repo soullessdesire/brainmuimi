@@ -1,21 +1,20 @@
-import { useState, useEffect, type FormEvent, type ChangeEvent } from 'react'
+import React, { useState, useEffect, type FormEvent, type ChangeEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { Button } from '../../components/ui/button'
-import { Input } from '../../components/ui/input'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/card'
-import { Alert, AlertDescription } from '../../components/ui/alert'
-import { Separator } from '../../components/ui/separator'
-import { Logo } from '../../components/logo'
-import { Spinner } from '../../components/spinner'
-import { FormField } from '../../components/form-field'
-import { DecorativePanel } from '../../components/decorative-panel'
-import { loginUser } from '../../services/auth.service'
-import { friendlyAuthError } from '../../lib/firebase-errors'
-import { useAuth } from '../../context/auth-context'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Separator } from '@/components/ui/separator'
+import { Logo } from '@/components/logo'
+import { Spinner } from '@/components/spinner'
+import { FormField } from '@/components/form-field'
+import { DecorativePanel } from '@/components/decorative-panel'
+import { loginUser } from '@/services/auth.service'
+import { friendlyAuthError } from '@/lib/firebase-errors'
+import { useAuth } from '@/context/auth-context'
 import { AlertCircle } from 'lucide-react'
-import { Helmet } from 'react-helmet-async'
-import type { LoginArgs } from '../../types'
+import type { LoginArgs } from '@/types'
 
 export function LoginPage() {
   const navigate = useNavigate()
@@ -50,23 +49,6 @@ export function LoginPage() {
     <div className="flex min-h-screen">
       <DecorativePanel />
 
-            <Helmet>
-        <title>Sign In | Kiswahili Books by Brian M Muimi</title>
-        <meta
-          name="description"
-          content="Sign in to access your purchased Kiswahili books and digital publications by Brian M Muimi."
-        />
-        <meta
-          name="keywords"
-          content="Kiswahili books login, Swahili literature account, Brian M Muimi books"
-        />
-        <meta property="og:title" content="Sign In | Kiswahili Books" />
-        <meta
-          property="og:description"
-          content="Access your Kiswahili digital book library."
-        />
-      </Helmet>
-      
       {/* Form panel */}
       <div className="w-full lg:w-[480px] lg:min-w-[480px] bg-background flex flex-col justify-center px-8 py-14 overflow-y-auto">
         <div className="max-w-sm mx-auto w-full animate-in fade-in-0 slide-in-from-bottom-4 duration-500">
@@ -132,11 +114,12 @@ export function LoginPage() {
                 </Button>
               </form>
 
+              <div className="flex justify-end -mt-1"><Link to="/forgot-password" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Forgot password?</Link></div>
               <Separator className="my-6" />
 
               <p className="text-center text-sm text-muted-foreground">
                 Don't have an account?{' '}
-                <Link to="/signup" className="text-black font-semibold hover:underline underline-offset-4">
+                <Link to="/signup" className="text-accent font-semibold hover:underline underline-offset-4">
                   Create one
                 </Link>
               </p>
