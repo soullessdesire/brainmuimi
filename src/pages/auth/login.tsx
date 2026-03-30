@@ -119,18 +119,10 @@ export function LoginPage() {
 
               <p className="text-center text-sm text-muted-foreground">
                 Don't have an account?{' '}
-                <Link to="/signup" className="text-accent font-semibold hover:underline underline-offset-4">
+                <Link to="/signup" className="text-black font-semibold hover:underline underline-offset-4">
                   Create one
                 </Link>
               </p>
-
-              <div className="mt-5 rounded-lg bg-muted px-4 py-3 text-center">
-                <p className="text-xs text-muted-foreground">
-                  <span className="font-semibold text-foreground">Admin access: </span>
-                  create a Firestore doc with{' '}
-                  <code className="bg-background rounded px-1 py-0.5 text-[11px]">role: "admin"</code>
-                </p>
-              </div>
             </CardContent>
           </Card>
         </div>

@@ -291,10 +291,6 @@ export function AdminPage() {
           <div className="px-2"><Logo /></div>
           <nav className="flex flex-col gap-1 flex-1">
             <NavItem
-              icon={<FileText size={15} />} label="Requests"
-              active={sidebar === 'requests'} onClick={() => setSidebar('requests')}
-            />
-            <NavItem
               icon={<UploadCloud size={15} />} label="Documents"
               active={sidebar === 'documents'} onClick={() => setSidebar('documents')}
             />
