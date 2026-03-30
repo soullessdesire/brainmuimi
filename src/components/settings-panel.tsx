@@ -1,4 +1,4 @@
-import React, { useState, type ChangeEvent, type FormEvent } from 'react'
+import { useState, type ChangeEvent, type FormEvent } from 'react'
 import { updatePassword, EmailAuthProvider, reauthenticateWithCredential, type User } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import { Button }   from '@/components/ui/button'

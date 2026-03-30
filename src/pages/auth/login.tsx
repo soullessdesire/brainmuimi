@@ -1,4 +1,4 @@
-import React, { useState, useEffect, type FormEvent, type ChangeEvent } from 'react'
+import { useState, useEffect, type SubmitEvent, type ChangeEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { Button } from '@/components/ui/button'
@@ -36,7 +36,7 @@ export function LoginPage() {
 
   const mutation = useMutation({ mutationFn: loginUser })
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
     mutation.mutate(form)
   }

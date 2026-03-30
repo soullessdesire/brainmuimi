@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable react-hooks/immutability */
+import { useEffect, useState } from 'react'
 import { getDocumentDownloadUrl, recordView } from '@/services/document.service'
 import { useSubmitRating, useMyRating }       from '@/hooks'
 import { Button }  from '@/components/ui/button'

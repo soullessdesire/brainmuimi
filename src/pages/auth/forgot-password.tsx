@@ -1,4 +1,4 @@
-import React, { useState, type FormEvent, type ChangeEvent } from 'react'
+import { useState, type SubmitEvent, type ChangeEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
@@ -19,7 +19,7 @@ export function ForgotPasswordPage() {
   const [sent, setSent]       = useState(false)
   const [error, setError]     = useState('')
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
     setError('')
     if (!email.trim()) return

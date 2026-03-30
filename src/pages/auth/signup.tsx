@@ -1,4 +1,4 @@
-import React, { useState, type FormEvent, type ChangeEvent } from 'react'
+import { useState, type SubmitEvent, type ChangeEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { Button } from '@/components/ui/button'
@@ -36,7 +36,7 @@ export default function SignupPage() {
 
   const mutation = useMutation({ mutationFn: signupUser })
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault()
     setFormError('')
     if (form.password !== form.confirm) return setFormError('Passwords do not match.')

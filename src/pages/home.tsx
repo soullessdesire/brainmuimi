@@ -16,7 +16,7 @@ function useInView(threshold = 0.15) {
     const el = ref.current
     if (!el) return
     const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setInView(true); obs.disconnect() } },
+      ([entry]) => { if (entry?.isIntersecting) { setInView(true); obs.disconnect() } },
       { threshold },
     )
     obs.observe(el)
@@ -375,7 +375,7 @@ export function Home() {
                 { icon: <GraduationCap size={18}/>,  title: 'Kielimu',         body: 'Maudhui yanayoelimu, yanayochochea fikira, na yanayojengea uwezo wa msomaji.' },
                 { icon: <Globe size={18}/>,          title: 'Mada Mbalimbali', body: 'Historia, afya, sayansi, mazingira, maadili, sanaa, na mengine mengi.' },
                 { icon: <Heart size={18}/>,          title: 'Kutoka Moyoni',   body: 'Kila kitabu kimeandikwa kwa upendo na dhamira ya kweli ya kubadilisha jamii.' },
-              ].map((f, i) => (
+              ].map(f => (
                 <div key={f.title}
                   className="p-5 rounded-2xl border border-white/8 bg-white/[0.03] hover:border-[#4CAF50]/20 transition-colors">
                   <div className="w-9 h-9 rounded-xl bg-[#4CAF50]/15 flex items-center justify-center text-[#81C784] mb-3">
