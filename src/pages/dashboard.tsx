@@ -15,6 +15,7 @@ import {
   Star, Phone, Mail, LogIn, LogOut, Eye,
 } from 'lucide-react'
 import type { Document } from '@/types'
+import { SEO } from '@/components/seo'
 
 // ── Average stars display ─────────────────────────────────────────
 function StarDisplay({ docId }: { docId: string }) {
@@ -22,6 +23,7 @@ function StarDisplay({ docId }: { docId: string }) {
   if (!ratings.length) return <span className="text-xs text-muted-foreground">No ratings yet</span>
   const avg = ratings.reduce((s, r) => s + r.stars, 0) / ratings.length
   return (
+    <>
     <div className="flex items-center gap-1.5">
       <div className="flex gap-0.5">
         {[1,2,3,4,5].map(n => (
@@ -31,6 +33,7 @@ function StarDisplay({ docId }: { docId: string }) {
       </div>
       <span className="text-xs text-muted-foreground">{avg.toFixed(1)} ({ratings.length})</span>
     </div>
+      </>
   )
 }
 
@@ -76,7 +79,7 @@ function DocCard({ doc, onView }: {
 
       <CardFooter>
         <Button
-          variant="ghost"
+          variant="outline"
           className="w-full gap-2"
           onClick={() => onView(doc)}
         >
@@ -131,7 +134,9 @@ export function PdfPage() {
   const uid = user?.uid ?? 'anonymous'
 
   return (
-    <div className="min-h-screen bg-background">
+          <>
+      <SEO title="Document Library" description="Browse and read free educational books by Brian M Muimi — history, science, health, ethics and more." path="/dashboard" />
+      <div className="min-h-screen bg-background">
 
       {/* ── Contact strip ── */}
       <div className="bg-[#4CAF50] text-white text-xs py-2 px-6">
@@ -214,5 +219,6 @@ export function PdfPage() {
         />
       )}
     </div>
+    </>
   )
 }

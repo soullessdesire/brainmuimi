@@ -25,7 +25,9 @@ import {
 import { cn }          from '@/lib/utils'
 import { toast }       from 'sonner'
 import { formatPrice } from '@/lib/document'
-import { queryKeys, type Document }   from '@/types'
+import { queryKeys }   from '@/types'
+import type { Document } from '@/types'
+import { SEO } from '@/components/seo'
 
 type SidebarTab = 'requests' | 'documents' | 'users' | 'settings'
 
@@ -34,6 +36,7 @@ function NavItem({ icon, label, active = false, onClick }: {
   icon: React.ReactNode; label: string; active?: boolean; onClick?: () => void
 }) {
   return (
+    <>
     <div
       onClick={onClick}
       className={cn(
@@ -45,9 +48,9 @@ function NavItem({ icon, label, active = false, onClick }: {
     >
       {icon}{label}
     </div>
+      </>
   )
 }
-
 
 // ── Documents panel ───────────────────────────────────────────────
 function DocumentsPanel() {
@@ -240,7 +243,8 @@ function UsersPanel() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {filtered.map(u => (
+                {filtered.map(u => {
+                  return (
                     <TableRow key={u.uid}>
                       {/* User */}
                       <TableCell>
@@ -269,7 +273,7 @@ function UsersPanel() {
                       </TableCell>
                     </TableRow>
                   )
-                )}
+                })}
               </TableBody>
             </Table>
           </Card>
@@ -282,10 +286,12 @@ function UsersPanel() {
 // ── Page ──────────────────────────────────────────────────────────
 export function AdminPage() {
   const { user, logout }      = useAuth()
-  const [sidebar, setSidebar] = useState<SidebarTab>('requests')
+  const [sidebar, setSidebar] = useState<SidebarTab>('documents')
 
   return (
-    <TooltipProvider>
+    <>
+      <SEO title="Admin Dashboard" noIndex />
+      <TooltipProvider>
       <div className="flex min-h-screen bg-background">
         <aside className="hidden lg:flex w-56 shrink-0 flex-col bg-foreground px-4 py-7 gap-6">
           <div className="px-2"><Logo /></div>
@@ -328,5 +334,6 @@ export function AdminPage() {
         </main>
       </div>
     </TooltipProvider>
+  </>
   )
 }

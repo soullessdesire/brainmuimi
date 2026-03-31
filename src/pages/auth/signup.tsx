@@ -13,6 +13,7 @@ import { DecorativePanel } from '@/components/decorative-panel'
 import { signupUser } from '@/services/auth.service'
 import { friendlyAuthError } from '@/lib/firebase-errors'
 import { AlertCircle, CheckCircle2, BookOpen } from 'lucide-react'
+import { SEO } from '@/components/seo'
 
 interface SignupForm {
   name:     string
@@ -51,7 +52,9 @@ export default function SignupPage() {
 
   // ── Success ──────────────────────────────────────────────────────
   if (mutation.isSuccess) return (
-    <div className="flex min-h-screen">
+    <>
+      <SEO title="Create Account" description="Create a free account on Brian M Muimi Books and Publications to rate documents and track your reading." path="/signup" noIndex />
+      <div className="flex min-h-screen">
       <DecorativePanel />
       <div className="w-full lg:w-[480px] lg:min-w-[480px] bg-background flex flex-col justify-center px-8 py-14">
         <div className="max-w-sm mx-auto w-full animate-in fade-in-0 slide-in-from-bottom-4 duration-500">
@@ -81,11 +84,14 @@ export default function SignupPage() {
         </div>
       </div>
     </div>
+    </>
   )
 
   // ── Form ─────────────────────────────────────────────────────────
   return (
-    <div className="flex min-h-screen">
+          <>
+      <SEO title="Create Account" description="Create a free account on Brian M Muimi Books and Publications to rate documents and track your reading." path="/signup" noIndex />
+      <div className="flex min-h-screen">
       <DecorativePanel />
 
       <div className="w-full lg:w-[480px] lg:min-w-[480px] bg-background flex flex-col justify-center px-8 py-12 overflow-y-auto">
@@ -157,7 +163,7 @@ export default function SignupPage() {
 
               <p className="text-center text-sm text-muted-foreground">
                 Already have an account?{' '}
-                <Link to="/login" className="text-black font-semibold hover:underline underline-offset-4">
+                <Link to="/login" className="text-accent font-semibold hover:underline underline-offset-4 text-black">
                   Sign in
                 </Link>
               </p>
@@ -166,5 +172,6 @@ export default function SignupPage() {
         </div>
       </div>
     </div>
+      </>
   )
 }

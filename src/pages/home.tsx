@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Logo } from '@/components/logo'
-import { Button } from '@/components/ui/button'
+import { Logo } from '../components/logo'
+import { SEO } from '../components/seo'
+import { Button } from '../components/ui/button'
 import {
   ArrowRight, BookOpen, Star,
   ChevronRight, Users, Award, Globe, Heart,
@@ -43,9 +44,9 @@ function Reveal({ children, className = '', delay = 0 }: {
 
 // ── Marquee ───────────────────────────────────────────────────────
 const MARQUEE_ITEMS = [
-  'Elimu', 'Fasihi ya Kiswahili', 'Historia', 'Sayansi',
-  'Afya', 'Mazingira', 'Utamaduni', 'Hisabati',
-  'Teknolojia', 'Maadili', 'Michezo', 'Sanaa',
+  'Education', 'African Literature', 'History', 'Science',
+  'Health', 'Environment', 'Culture', 'Mathematics',
+  'Technology', 'Ethics', 'Sports', 'Arts',
 ]
 
 function Marquee() {
@@ -92,16 +93,16 @@ function Feature({ icon, title, body }: { icon: React.ReactNode; title: string; 
 // ── Testimonial ───────────────────────────────────────────────────
 const TESTIMONIALS = [
   {
-    quote: "Vitabu hivi vimenigusa moyoni. Lugha ya Kiswahili imetumika vizuri sana — rahisi kusoma na kuelewa.",
-    author: "Amani W.", role: "Mwanafunzi, Dar es Salaam",
+    quote: "These books touched me deeply. The language is beautifully crafted — easy to read and genuinely engaging.",
+    author: "Amani W.", role: "Student, Dar es Salaam",
   },
   {
-    quote: "Mwandishi Brian anaelewa jinsi ya kufikisha ujumbe kwa wasomaji wa makundi yote. Hongera sana!",
-    author: "Fatuma S.", role: "Mwalimu wa Sekondari, Mombasa",
+    quote: "Brian understands how to reach readers of all kinds. Truly impressive work!",
+    author: "Fatuma S.", role: "Secondary School Teacher, Mombasa",
   },
   {
-    quote: "Vitabu vya elimu kwa Kiswahili havikuwa vingi — lakini sasa tuna hazina hii. Asante sana.",
-    author: "Baraka M.", role: "Msomi, Nairobi",
+    quote: "Quality educational books in our language were rare — but now we have this incredible resource. Thank you!",
+    author: "Baraka M.", role: "Academic, Nairobi",
   },
 ]
 
@@ -138,6 +139,12 @@ function Grain() {
 // ── Page ──────────────────────────────────────────────────────────
 export function Home() {
   return (
+    <>
+    <SEO
+        title="Free Educational Books"
+        description="Brian M Muimi Books and Publications — free educational books spanning history, science, health, ethics and more. Read online, no login required."
+        path="/"
+      />
     <div className="min-h-screen bg-[#0a0f0a] text-white overflow-x-hidden">
       <Grain />
 
@@ -174,20 +181,20 @@ export function Home() {
       <nav className="fixed top-7 inset-x-0 z-40 flex items-center justify-between px-6 md:px-12 h-14 border-b border-white/[0.06] bg-[#0a0f0a]/85 backdrop-blur-md">
         <Logo invert />
         <div className="hidden md:flex items-center gap-8 text-xs font-medium text-white/50 uppercase tracking-[0.12em]">
-          <a href="#kuhusu"    className="hover:text-white/90 transition-colors">Kuhusu</a>
-          <a href="#vitabu"   className="hover:text-white/90 transition-colors">Vitabu</a>
-          <a href="#jinsi"    className="hover:text-white/90 transition-colors">Jinsi Inavyofanya Kazi</a>
-          <a href="#maoni"    className="hover:text-white/90 transition-colors">Maoni</a>
+          <a href="#about"    className="hover:text-white/90 transition-colors">About</a>
+          <a href="#library"   className="hover:text-white/90 transition-colors">Library</a>
+          <a href="#how-it-works"    className="hover:text-white/90 transition-colors">How It Works</a>
+          <a href="#testimonials"    className="hover:text-white/90 transition-colors">Testimonials</a>
         </div>
         <div className="flex items-center gap-3">
           <Link to="/login">
-            <Button variant="ghost" size="sm" className="text-white/60 hover:text-white text-xs">
-              Ingia
+            <Button variant="ghost" size="sm" className="text-white/60 hover:text-white text-xs bg-transparent hover:bg-transparent border-white/60 hover:border-white">
+              Sign In
             </Button>
           </Link>
           <Link to="/dashboard">
             <Button size="sm" className="bg-[#4CAF50] hover:bg-[#388E3C] text-white text-xs gap-1.5 border-0">
-              Soma Sasa <ArrowRight size={13} />
+              Read Now <ArrowRight size={13} />
             </Button>
           </Link>
         </div>
@@ -210,44 +217,44 @@ export function Home() {
             <div className="h1 inline-flex items-center gap-2 border border-[#4CAF50]/30 bg-[#4CAF50]/10 rounded-full px-4 py-1.5 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4CAF50] animate-pulse" />
               <span className="text-[#81C784] text-xs font-semibold uppercase tracking-[0.15em]">
-                Mwandishi wa Kiswahili · Brian M Muimi
+                Educational Author · Brian M Muimi
               </span>
             </div>
 
             <h1 style={{ fontFamily: 'var(--font-display)' }}
               className="h2 text-[clamp(3rem,7vw,5.5rem)] font-bold leading-[0.92] tracking-tight text-white mb-6">
-              Elimu kwa
+              Knowledge for
               <br />
               <span className="text-transparent" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}>
-                lugha yetu
+                our language,
               </span>
               <br />
-              <span className="text-[#4CAF50]">Kiswahili.</span>
+              <span className="text-[#4CAF50]">our people.</span>
             </h1>
 
             <p className="h3 text-white/55 text-base leading-relaxed max-w-md mb-10">
-              Vitabu vya kielimu kwa Kiswahili — historia, sayansi, afya, maadili, na zaidi.
-              Soma bure, wakati wowote, mahali popote. Iliyoandikwa na moyo kwa ajili ya Afrika.
+              Educational books spanning history, science, health, ethics, and much more.
+              Read for free, anytime, anywhere. Written with heart for Africa.
             </p>
 
             <div className="h4 flex items-center gap-4 flex-wrap">
               <Link to="/dashboard">
                 <Button className="bg-[#4CAF50] hover:bg-[#388E3C] text-white gap-2 h-11 px-7 text-sm border-0">
-                  Soma Vitabu <ArrowRight size={15} />
+                  Browse Library <ArrowRight size={15} />
                 </Button>
               </Link>
-              <a href="#kuhusu">
+              <a href="#about">
                 <Button variant="ghost" className="text-white/50 hover:text-white gap-2 h-11 px-5 text-sm">
-                  Jifunze Zaidi <ChevronRight size={14} />
+                  Learn More <ChevronRight size={14} />
                 </Button>
               </a>
             </div>
 
             <div className="h5 flex items-center gap-6 mt-10 pt-8 border-t border-white/[0.07] flex-wrap">
               {[
-                { icon: <Globe size={14} />,        label: 'Kiswahili safi' },
-                { icon: <BookOpen size={14} />,     label: 'Soma bure' },
-                { icon: <GraduationCap size={14} />,label: 'Kielimu' },
+                { icon: <Globe size={14} />,        label: 'African Language' },
+                { icon: <BookOpen size={14} />,     label: 'Free to read' },
+                { icon: <GraduationCap size={14} />,label: 'Educational' },
               ].map(({ icon, label }) => (
                 <span key={label} className="flex items-center gap-1.5 text-xs text-white/35 font-medium">
                   <span className="text-[#4CAF50]">{icon}</span>
@@ -284,16 +291,16 @@ export function Home() {
               <p style={{ fontFamily: 'var(--font-display)' }}
                 className="text-2xl font-bold text-white mb-1">Brian M Muimi</p>
               <p className="text-[#4CAF50] text-xs uppercase tracking-widest font-semibold mb-5">
-                Mwandishi · Author
+                Author · Writer
               </p>
               <p className="text-white/50 text-sm leading-relaxed mb-6">
-                Mwandishi anayeibuka akiwa na ndoto moja — kuleta elimu bora
-                kwa lugha ya Kiswahili kwa watu wote wa Afrika na ulimwenguni.
+                An emerging author with one dream — bringing quality education
+                across Africa and the world.
               </p>
               <div className="flex justify-center gap-6 pt-4 border-t border-white/10">
                 <div className="text-center">
                   <p style={{ fontFamily: 'var(--font-display)' }} className="text-2xl font-bold text-[#4CAF50]">🆓</p>
-                  <p className="text-[10px] text-white/30 uppercase tracking-wide mt-1">Bure Kabisa</p>
+                  <p className="text-[10px] text-white/30 uppercase tracking-wide mt-1">Completely Free</p>
                 </div>
                 <div className="text-center">
                   <p style={{ fontFamily: 'var(--font-display)' }} className="text-2xl font-bold text-[#81C784]">KE</p>
@@ -301,16 +308,16 @@ export function Home() {
                 </div>
                 <div className="text-center">
                   <p style={{ fontFamily: 'var(--font-display)' }} className="text-2xl font-bold text-[#9C4DCC]">📚</p>
-                  <p className="text-[10px] text-white/30 uppercase tracking-wide mt-1">Hali ya Juu</p>
+                  <p className="text-[10px] text-white/30 uppercase tracking-wide mt-1">Premium Quality</p>
                 </div>
               </div>
             </div>
 
             {/* Floating chips */}
             {[
-              { text: '✍️ Kielimu',       cls: 'top-4 -left-4 rotate-[-6deg]' },
-              { text: '🌍 Fasihi Afrika', cls: 'bottom-8 -right-4 rotate-[4deg]' },
-              { text: '📖 Kiswahili',     cls: 'top-1/2 -right-8 rotate-[-3deg]' },
+              { text: '✍️ Educational',       cls: 'top-4 -left-4 rotate-[-6deg]' },
+              { text: '🌍 African Literature', cls: 'bottom-8 -right-4 rotate-[4deg]' },
+              { text: '📖 African Books',     cls: 'top-1/2 -right-8 rotate-[-3deg]' },
             ].map(({ text, cls }) => (
               <div key={text}
                 className={`absolute ${cls} bg-white/[0.08] border border-white/10 rounded-full px-3 py-1.5 text-xs font-medium text-white/60 whitespace-nowrap backdrop-blur-sm`}>
@@ -330,40 +337,40 @@ export function Home() {
       <section className="py-24 px-6 md:px-12">
         <Reveal>
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-            <Stat number="🆓"  label="Vitabu bure kabisa" />
-            <Stat number="KE"  label="Made in Kenya" />
-            <Stat number="SW"  label="Kiswahili safi" />
-            <Stat number="24/7" label="Soma wakati wowote" />
+            <Stat number="🆓"  label="Completely free books" />
+            <Stat number="KE"  label="Made in Kenya 🇰🇪" />
+            <Stat number="SW"  label="African Writing" />
+            <Stat number="24/7" label="Read anytime" />
           </div>
         </Reveal>
       </section>
 
       {/* ── KUHUSU ── */}
-      <section id="kuhusu" className="py-24 px-6 md:px-12 border-t border-white/[0.06]">
+      <section id="about" className="py-24 px-6 md:px-12 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <Reveal>
             <div>
-              <p className="text-[#4CAF50] text-xs font-bold uppercase tracking-[0.2em] mb-4">Kuhusu Mwandishi</p>
+              <p className="text-[#4CAF50] text-xs font-bold uppercase tracking-[0.2em] mb-4">About the Author</p>
               <h2 style={{ fontFamily: 'var(--font-display)' }}
                 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-                Ndoto ya kuleta<br />elimu kwa Kiswahili.
+                A passion for bringing<br />education to every reader.
               </h2>
               <p className="text-white/50 text-sm leading-relaxed mb-4">
-                Mimi ni Brian M Muimi, mwandishi anayeibuka kutoka Kenya. Ninaandika vitabu vya kielimu
-                kwa lugha ya Kiswahili — kwa sababu naamini kwamba kila mtu ana haki ya kupata
-                elimu bora katika lugha anayoielewa vizuri.
+                I am Brian M Muimi, an emerging author from Kenya. I write educational books
+                — because I believe every person has the right to access
+                quality education in the language they know best.
               </p>
               <p className="text-white/50 text-sm leading-relaxed mb-8">
-                Vitabu vyangu vinashughulikia mada mbalimbali: historia, sayansi, afya, mazingira,
-                maadili, na zaidi. Lengo langu ni kufikia wasomaji wa makundi yote — watoto, vijana,
-                na wazee — na kuwapatia ujuzi ambao utabadilisha maisha yao.
+                My books cover a wide range of topics: history, science, health, environment,
+                ethics, and more. My goal is to reach readers of all ages — children, youth,
+                and elders — and give them knowledge that will transform their lives.
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-[#4CAF50]/20 flex items-center justify-center">
                   <Feather size={15} className="text-[#4CAF50]" />
                 </div>
                 <p className="text-sm text-white/60 italic">
-                  "Elimu ni silaha yenye nguvu zaidi duniani." — Adapted for Africa
+                  "Education is the most powerful weapon you can use to change the world." — Adapted for Africa
                 </p>
               </div>
             </div>
@@ -371,11 +378,11 @@ export function Home() {
           <Reveal delay={100}>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: <Feather size={18}/>,        title: 'Kiswahili Safi',  body: 'Vitabu vilivyoandikwa kwa lugha sahihi na inayoeleweka kwa wasomaji wote.' },
-                { icon: <GraduationCap size={18}/>,  title: 'Kielimu',         body: 'Maudhui yanayoelimu, yanayochochea fikira, na yanayojengea uwezo wa msomaji.' },
-                { icon: <Globe size={18}/>,          title: 'Mada Mbalimbali', body: 'Historia, afya, sayansi, mazingira, maadili, sanaa, na mengine mengi.' },
-                { icon: <Heart size={18}/>,          title: 'Kutoka Moyoni',   body: 'Kila kitabu kimeandikwa kwa upendo na dhamira ya kweli ya kubadilisha jamii.' },
-              ].map(f => (
+                { icon: <Feather size={18}/>,        title: 'Authentic Voice',  body: 'Books written in clear, accessible language that every reader can understand and enjoy.' },
+                { icon: <GraduationCap size={18}/>,  title: 'Educational',         body: 'Content that educates, sparks thought, and builds the capacity of every reader.' },
+                { icon: <Globe size={18}/>,          title: 'Diverse Topics', body: 'History, health, science, environment, ethics, arts, and so much more.' },
+                { icon: <Heart size={18}/>,          title: 'Written with Heart',   body: 'Every book is crafted with love and a genuine desire to transform society.' },
+              ].map((f) => (
                 <div key={f.title}
                   className="p-5 rounded-2xl border border-white/8 bg-white/[0.03] hover:border-[#4CAF50]/20 transition-colors">
                   <div className="w-9 h-9 rounded-xl bg-[#4CAF50]/15 flex items-center justify-center text-[#81C784] mb-3">
@@ -391,20 +398,20 @@ export function Home() {
       </section>
 
       {/* ── VITABU (catalogue teaser) ── */}
-      <section id="vitabu" className="py-24 px-6 md:px-12 border-t border-white/[0.06]">
+      <section id="library" className="py-24 px-6 md:px-12 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
           <Reveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
               <div>
-                <p className="text-[#4CAF50] text-xs font-bold uppercase tracking-[0.2em] mb-4">Maktaba</p>
+                <p className="text-[#4CAF50] text-xs font-bold uppercase tracking-[0.2em] mb-4">The Library</p>
                 <h2 style={{ fontFamily: 'var(--font-display)' }}
                   className="text-4xl md:text-5xl font-bold text-white leading-tight">
-                  Vitabu vinaongezeka<br />daima.
+                  The library keeps<br />growing.
                 </h2>
               </div>
               <p className="text-white/40 text-sm max-w-xs leading-relaxed">
-                Soma vitabu vyote bure kabisa — bila malipo, bila usajili.
-                Vitabu vipya vinaongezwa mara kwa mara.
+                Read all books completely free — no payment, no sign-up required.
+                New books are added regularly.
               </p>
             </div>
           </Reveal>
@@ -412,12 +419,12 @@ export function Home() {
           {/* Mada grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
             {[
-              { emoji: '📜', label: 'Historia' },
-              { emoji: '🔬', label: 'Sayansi' },
-              { emoji: '💚', label: 'Afya' },
-              { emoji: '🌿', label: 'Mazingira' },
-              { emoji: '⭐', label: 'Maadili' },
-              { emoji: '🎨', label: 'Sanaa' },
+              { emoji: '📜', label: 'History' },
+              { emoji: '🔬', label: 'Science' },
+              { emoji: '💚', label: 'Health' },
+              { emoji: '🌿', label: 'Environment' },
+              { emoji: '⭐', label: 'Ethics' },
+              { emoji: '🎨', label: 'Arts' },
             ].map(({ emoji, label }, i) => (
               <Reveal key={label} delay={i * 60}>
                 <Link to="/dashboard">
@@ -436,7 +443,7 @@ export function Home() {
             <div className="text-center">
               <Link to="/dashboard">
                 <Button className="bg-[#4CAF50] hover:bg-[#388E3C] text-white gap-2 h-11 px-8 text-sm border-0">
-                  Angalia Vitabu Vyote <ArrowRight size={14} />
+                  Browse All Books <ArrowRight size={14} />
                 </Button>
               </Link>
             </div>
@@ -445,22 +452,22 @@ export function Home() {
       </section>
 
       {/* ── JINSI INAVYOFANYA KAZI ── */}
-      <section id="jinsi" className="py-24 px-6 md:px-12 border-t border-white/[0.06]">
+      <section id="how-it-works" className="py-24 px-6 md:px-12 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
           <Reveal>
-            <p className="text-[#4CAF50] text-xs font-bold uppercase tracking-[0.2em] mb-4">Jinsi Inavyofanya Kazi</p>
+            <p className="text-[#4CAF50] text-xs font-bold uppercase tracking-[0.2em] mb-4">How It Works</p>
             <h2 style={{ fontFamily: 'var(--font-display)' }}
               className="text-4xl md:text-5xl font-bold text-white mb-16 leading-tight">
-              Rahisi. Bure. Haraka.
+              Simple. Free. Instant.
             </h2>
           </Reveal>
 
           {/* Steps */}
           <div className="grid md:grid-cols-3 gap-0 mb-20">
             {[
-              { n: '01', title: 'Tembelea Maktaba', body: 'Fungua tovuti hii na uone vitabu vyote vilivyopo — bila kulazimika kusajili au kuingia.' },
-              { n: '02', title: 'Chagua Kitabu',    body: 'Piga kitufe cha "Soma Kitabu" kwenye kitabu unachopenda na kitafunguka mara moja.' },
-              { n: '03', title: 'Soma na Furaha',   body: 'Soma kitabu chochote bila malipo. Ingia akaunti tu ukitaka kuacha tathmini yako.' },
+              { n: '01', title: 'Visit the Library', body: 'Open this website and browse all available books — no sign-up or login required.' },
+              { n: '02', title: 'Choose a Book',    body: "Click the 'Read Document' button on any book you like and it opens instantly." },
+              { n: '03', title: 'Read and Enjoy',   body: 'Read any book for free. Sign in only if you want to leave a rating.' },
             ].map(({ n, title, body }, i) => (
               <Reveal key={n} delay={i * 100}>
                 <div className={`relative flex flex-col gap-4 p-8 ${i < 2 ? 'border-r border-white/[0.06]' : ''}`}>
@@ -486,12 +493,12 @@ export function Home() {
           </Reveal>
           <div className="grid md:grid-cols-3 gap-4">
             {[
-              { icon: <Lightbulb size={18}/>,      title: 'Elimu ya Kweli',       body: 'Kila kitabu kina maudhui yaliyochunguzwa vizuri na yanayotoa thamani ya kweli kwa msomaji.' },
-              { icon: <Globe size={18}/>,           title: 'Lugha Inayoeleweka',   body: 'Kiswahili safi kinachotumiwa — bila maneno magumu yasiyohitajika.' },
-              { icon: <Heart size={18}/>,           title: 'Bure Kabisa',          body: 'Hakuna malipo. Hakuna usajili wa lazima. Elewa na soma bila kizuizi.' },
-              { icon: <Users size={18}/>,           title: 'Kwa Watu Wote',        body: 'Vitabu vya makundi yote — watoto, vijana, wazee, wanafunzi, walimu.' },
-              { icon: <Award size={18}/>,           title: 'Hali ya Juu',          body: 'Vitabu vilivyopangwa kwa makini, visomavyofurahisha na kusisimua akili.' },
-              { icon: <Feather size={18}/>,         title: 'Kinaendelea Kukua',    body: 'Vitabu vipya vinaongezwa mara kwa mara. Rudi mara kwa mara kupata zaidi.' },
+              { icon: <Lightbulb size={18}/>,      title: 'Genuine Knowledge',       body: 'Every book contains thoroughly researched content that delivers real value to the reader.' },
+              { icon: <Globe size={18}/>,           title: 'Clear Language',   body: 'Clean, precise language is used throughout — no unnecessarily complex words or jargon.' },
+              { icon: <Heart size={18}/>,           title: 'Completely Free',          body: 'No payment. No mandatory sign-up. Read without any barrier.' },
+              { icon: <Users size={18}/>,           title: 'For Everyone',        body: 'Books for all groups — children, youth, elders, students, and teachers.' },
+              { icon: <Award size={18}/>,           title: 'High Quality',          body: 'Carefully crafted books that are enjoyable to read and intellectually stimulating.' },
+              { icon: <Feather size={18}/>,         title: 'Always Growing',    body: 'New books are added regularly. Come back regularly to discover new titles.' },
             ].map((f, i) => (
               <Reveal key={f.title} delay={i * 60}>
                 <Feature {...f} />
@@ -502,13 +509,13 @@ export function Home() {
       </section>
 
       {/* ── MAONI ── */}
-      <section id="maoni" className="py-24 px-6 md:px-12 border-t border-white/[0.06]">
+      <section id="testimonials" className="py-24 px-6 md:px-12 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
           <Reveal>
-            <p className="text-[#4CAF50] text-xs font-bold uppercase tracking-[0.2em] mb-4">Maoni ya Wasomaji</p>
+            <p className="text-[#4CAF50] text-xs font-bold uppercase tracking-[0.2em] mb-4">Reader Reviews</p>
             <h2 style={{ fontFamily: 'var(--font-display)' }}
               className="text-4xl md:text-5xl font-bold text-white mb-14 leading-tight">
-              Wasomaji wetu<br />wanasema nini.
+              What our<br />readers say.
             </h2>
           </Reveal>
           <div className="grid md:grid-cols-3 gap-5">
@@ -530,27 +537,27 @@ export function Home() {
 
             <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-10">
               <div>
-                <p className="text-[#4CAF50] text-xs font-bold uppercase tracking-[0.2em] mb-4">Anza Leo</p>
+                <p className="text-[#4CAF50] text-xs font-bold uppercase tracking-[0.2em] mb-4">Start Today</p>
                 <h2 style={{ fontFamily: 'var(--font-display)' }}
                   className="text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
-                  Kitabu chako<br />kinakungoja.
+                  Your next great read<br />is waiting for you.
                 </h2>
                 <p className="text-white/40 text-sm max-w-sm leading-relaxed">
-                  Jiunge na wasomaji wanaopenda lugha ya Kiswahili na kutafuta elimu
-                  inayobadilisha maisha. Soma bure, wakati wowote.
+                  Join readers who love African literature and seek knowledge
+                  that transforms lives. Read for free, anytime.
                 </p>
               </div>
 
               <div className="flex flex-col gap-3 shrink-0">
                 <Link to="/dashboard">
                   <Button className="bg-[#4CAF50] hover:bg-[#388E3C] text-white gap-2 h-12 px-8 text-sm w-full border-0">
-                    Soma Vitabu Sasa <ArrowRight size={15} />
+                    Read Books Now <ArrowRight size={15} />
                   </Button>
                 </Link>
                 <Link to="/signup">
-                  <Button variant="ghost"
-                    className="border-white/15 text-white/60 hover:text-white hover:border-white/30 h-12 px-8 text-sm w-full bg-black hover:bg-black">
-                    Fungua Akaunti Bure
+                  <Button variant="outline"
+                    className="border-white/15 text-white/60 hover:text-white hover:border-white/30 h-12 px-8 text-sm w-full bg-transparent hover:bg-transparent border-white/60 hover:border-white">
+                    Create a Free Account
                   </Button>
                 </Link>
               </div>
@@ -564,15 +571,16 @@ export function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <Logo invert />
           <p className="text-xs text-white/25 text-center">
-            © {new Date().getFullYear()} Brian M Muimi Books and Publications. Haki zote zimehifadhiwa.
+            © {new Date().getFullYear()} Brian M Muimi Books and Publications. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-xs text-white/30 font-medium">
-            <Link to="/login"    className="hover:text-white/70 transition-colors">Ingia</Link>
-            <Link to="/signup"   className="hover:text-white/70 transition-colors">Jisajili</Link>
-            <Link to="/dashboard" className="hover:text-white/70 transition-colors">Vitabu</Link>
+            <Link to="/login"    className="hover:text-white/70 transition-colors">Sign In</Link>
+            <Link to="/signup"   className="hover:text-white/70 transition-colors">Register</Link>
+            <Link to="/dashboard" className="hover:text-white/70 transition-colors">Library</Link>
           </div>
         </div>
       </footer>
     </div>
+    </>
   )
 }

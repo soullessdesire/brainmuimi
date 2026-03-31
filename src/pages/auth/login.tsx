@@ -15,6 +15,7 @@ import { friendlyAuthError } from '@/lib/firebase-errors'
 import { useAuth } from '@/context/auth-context'
 import { AlertCircle } from 'lucide-react'
 import type { LoginArgs } from '@/types'
+import { SEO } from '@/components/seo'
 
 export function LoginPage() {
   const navigate = useNavigate()
@@ -46,7 +47,9 @@ export function LoginPage() {
     : null
 
   return (
-    <div className="flex min-h-screen">
+          <>
+      <SEO title="Sign In" description="Sign in to your Brian M Muimi Books account to rate and save your favourite documents." path="/login" noIndex />
+      <div className="flex min-h-screen">
       <DecorativePanel />
 
       {/* Form panel */}
@@ -119,7 +122,7 @@ export function LoginPage() {
 
               <p className="text-center text-sm text-muted-foreground">
                 Don't have an account?{' '}
-                <Link to="/signup" className="text-black font-semibold hover:underline underline-offset-4">
+                <Link to="/signup" className="text-accent font-semibold hover:underline underline-offset-4 text-black">
                   Create one
                 </Link>
               </p>
@@ -128,5 +131,6 @@ export function LoginPage() {
         </div>
       </div>
     </div>
+      </>
   )
 }

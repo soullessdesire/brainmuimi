@@ -49,9 +49,9 @@ function RatingPanel({ docId, uid, onDone }: { docId: string; uid: string; onDon
     try {
       await mutation.mutateAsync({ uid, stars, comment })
       setSaved(true)
-      toast.success('Asante! Tathmini yako imehifadhiwa.')
+      toast.success('Thank you! Rating saved.')
       setTimeout(onDone, 1400)
-    } catch { toast.error('Imeshindwa kuhifadhi. Jaribu tena.') }
+    } catch { toast.error('Could not save rating. Please try again.') }
   }
 
   if (saved) return (
@@ -62,19 +62,19 @@ function RatingPanel({ docId, uid, onDone }: { docId: string; uid: string; onDon
             className={n <= stars ? 'fill-[#4CAF50] text-[#4CAF50]' : 'text-white/20 fill-transparent'} />
         ))}
       </div>
-      <p className="text-sm text-white font-medium">Imehifadhiwa! Asante.</p>
+      <p className="text-sm text-white font-medium">Rating saved! Thank you.</p>
     </div>
   )
 
   return (
     <div className="max-w-2xl mx-auto w-full">
-      <p className="text-sm font-semibold text-white mb-3">Pima kitabu hiki / Rate this document</p>
+      <p className="text-sm font-semibold text-white mb-3">Rate this document</p>
       <div className="flex items-start gap-4 flex-wrap sm:flex-nowrap">
         <div className="flex-1 min-w-0 space-y-2">
           <StarInput value={stars} onChange={setStars} />
           <textarea
             rows={2}
-            placeholder="Acha maoni (hiari) / Leave a comment (optional)…"
+            placeholder="Leave a comment (optional)…"
             value={comment}
             onChange={e => setComment(e.target.value)}
             className="w-full text-sm rounded-lg bg-white/8 border border-white/12 text-white placeholder:text-white/30 px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#4CAF50] resize-none"
@@ -83,14 +83,14 @@ function RatingPanel({ docId, uid, onDone }: { docId: string; uid: string; onDon
         <div className="flex gap-2 shrink-0 pt-1">
           <Button variant="ghost" size="sm" onClick={onDone}
             className="text-white/40 hover:text-white hover:bg-white/10 text-xs">
-            Ruka / Skip
+            Skip
           </Button>
           <Button size="sm" disabled={!stars || mutation.isPending}
             className="bg-[#4CAF50] hover:bg-[#388E3C] text-white border-0 text-xs"
             onClick={handleSubmit}>
             {mutation.isPending
               ? <Spinner size={13} className="text-white" />
-              : <><Send size={12} /> Tuma</>}
+              : <><Send size={12} /> Submit</>}
           </Button>
         </div>
       </div>
@@ -124,7 +124,7 @@ export function PdfViewerDialog({ open, onClose, doc, uid }: Props) {
     setLoading(true); setError(false); setPdfUrl(null)
 
     getDocumentDownloadUrl(doc.storagePath)
-      .then(url => {
+      .then((url : string) => {
         if (!cancelled) { setPdfUrl(url); setLoading(false) }
         void recordView(doc.id, uid)
       })
@@ -182,19 +182,19 @@ export function PdfViewerDialog({ open, onClose, doc, uid }: Props) {
         <button onClick={handleClose}
           className="flex items-center gap-1 text-white/50 hover:text-white transition-colors text-sm font-medium shrink-0">
           <ChevronLeft size={18} />
-          <span className="hidden sm:inline text-xs">Rudi</span>
+          <span className="hidden sm:inline text-xs">Back</span>
         </button>
 
         <div className="flex-1 min-w-0 px-2">
           <p className="text-white text-sm font-semibold truncate leading-tight">{doc.title}</p>
           <p className="text-white/35 text-[10px] uppercase tracking-wide hidden sm:block">
-            {doc.category} · {doc.pages} ukurasa
+            {doc.category} · {doc.pages} pages
           </p>
         </div>
 
         <div className="hidden md:flex items-center gap-1.5 text-[10px] text-white/30 bg-white/5 rounded-full px-3 py-1 shrink-0">
           <BookOpen size={11} />
-          <span>Soma tu / Read only</span>
+          <span>Read only</span>
         </div>
 
         <button onClick={handleClose}
@@ -209,7 +209,7 @@ export function PdfViewerDialog({ open, onClose, doc, uid }: Props) {
         {loading && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[#111]">
             <Spinner size={32} className="text-[#4CAF50]" />
-            <p className="text-white/40 text-sm">Inapakia kitabu…</p>
+            <p className="text-white/40 text-sm">Loading document…</p>
           </div>
         )}
 
@@ -218,12 +218,12 @@ export function PdfViewerDialog({ open, onClose, doc, uid }: Props) {
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-[#111]">
             <BookOpen size={48} className="text-white/10" />
             <p className="text-white/50 text-sm text-center px-8">
-              Imeshindwa kupakia kitabu.<br />
-              <span className="text-xs text-white/30">Angalia muunganiko wa mtandao.</span>
+              Could not load document.<br />
+              <span className="text-xs text-white/30">Check your internet connection.</span>
             </p>
             <button onClick={() => { setError(false); setLoading(true) }}
               className="text-xs text-[#4CAF50] hover:text-[#81C784] transition-colors underline underline-offset-2">
-              Jaribu tena
+              Try again
             </button>
           </div>
         )}
@@ -268,8 +268,8 @@ export function PdfViewerDialog({ open, onClose, doc, uid }: Props) {
           ) : (
             <div className="flex items-center justify-between max-w-2xl mx-auto">
               <p className="text-sm text-white/50">
-                <a href="/login" className="text-[#4CAF50] hover:underline font-medium">Ingia</a>{' '}
-                ili kupima kitabu hiki
+                <a href="/login" className="text-[#4CAF50] hover:underline font-medium">Sign in</a>{' '}
+                to rate this document
               </p>
               <button onClick={handleRatingDone} className="text-white/30 hover:text-white p-1">
                 <X size={15} />

@@ -1,4 +1,4 @@
-import { useState, type SubmitEvent, type ChangeEvent } from 'react'
+import { useState, type FormEvent, type ChangeEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
@@ -12,6 +12,7 @@ import { FormField }  from '@/components/form-field'
 import { DecorativePanel } from '@/components/decorative-panel'
 import { AlertCircle, MailCheck, ArrowLeft } from 'lucide-react'
 import { friendlyAuthError } from '@/lib/firebase-errors'
+import { SEO } from '@/components/seo'
 
 export function ForgotPasswordPage() {
   const [email, setEmail]     = useState('')
@@ -19,7 +20,7 @@ export function ForgotPasswordPage() {
   const [sent, setSent]       = useState(false)
   const [error, setError]     = useState('')
 
-  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setError('')
     if (!email.trim()) return
@@ -44,7 +45,9 @@ export function ForgotPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-screen">
+          <>
+      <SEO title="Forgot Password" description="Reset your Brian M Muimi Books account password." path="/forgot-password" noIndex />
+      <div className="flex min-h-screen">
       <DecorativePanel />
 
       <div className="w-full lg:w-[480px] lg:min-w-[480px] bg-background flex flex-col justify-center px-8 py-14 overflow-y-auto">
@@ -125,5 +128,6 @@ export function ForgotPasswordPage() {
         </div>
       </div>
     </div>
+      </>
   )
 }
